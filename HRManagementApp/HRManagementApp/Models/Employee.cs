@@ -56,9 +56,6 @@
 
         public string DepartmentName { get; set; }
 
-        public override string ToString()
-        {
-            return $"{No} {FullName} {Position} {Salary} {DepartmentName}";
-        }
+       
     }
 }
