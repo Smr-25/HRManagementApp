@@ -2,6 +2,7 @@
 {
     public class Department
     {
+        private List<Employee> Employees { get; set; } = [];
         public Department(string name, int workerLimit, int salaryLimit)
         {
             Name = name;
@@ -9,17 +10,65 @@
             SalaryLimit = salaryLimit;
         }
 
-        public string  Name { get; set; }
+        private string _name;
+        public string  Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if(value.Length < 2)
+                {
+                    throw new Exception("Department name must be greater than 2 letter ");
+                }
 
-        public int WorkerLimit { get; set; }
+                _name = value;  
+            }
+        
+        }
 
-        public int SalaryLimit { get; set; }
+        private int _workerLimit;
+        public int WorkerLimit {
 
-        public List<Employee> Employees { get; set; } = [];
+            get
+            {
+                return _workerLimit;
+            }
+            set
+            {
+                if (value < 1)
+                {
+                    throw new Exception("Department worker limit must be greater than 1");
+                }
 
+                _workerLimit = value;
+            }
+
+        }
+
+        private int _salaryLimit;
+        public int SalaryLimit {
+
+            get
+            {
+                return _salaryLimit;
+            }
+
+            set
+            {
+                if(value < 250)
+                {
+                    throw new Exception("Department salary limit must be greater than 250");
+                }
+
+                _salaryLimit = value;
+            }
+        }
         public double CalcSalaryAverage()
         {
-            return 0;
+            return Employees.Average(e=>e.Salary);
         }
     }
 }

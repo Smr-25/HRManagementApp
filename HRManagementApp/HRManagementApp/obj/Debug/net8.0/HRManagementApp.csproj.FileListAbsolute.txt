@@ -1,0 +1,15 @@
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\bin\Debug\net8.0\HRManagementApp.exe
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\bin\Debug\net8.0\HRManagementApp.deps.json
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\bin\Debug\net8.0\HRManagementApp.runtimeconfig.json
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\bin\Debug\net8.0\HRManagementApp.dll
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\bin\Debug\net8.0\HRManagementApp.pdb
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.AssemblyInfoInputs.cache
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.AssemblyInfo.cs
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.csproj.CoreCompileInputs.cache
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.sourcelink.json
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.dll
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\refint\HRManagementApp.dll
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.pdb
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\HRManagementApp.genruntimeconfig.cache
+C:\Users\samiraa\Desktop\MiniApp\HRManagementApp\HRManagementApp\obj\Debug\net8.0\ref\HRManagementApp.dll

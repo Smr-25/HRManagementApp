@@ -1,0 +1,9 @@
+﻿// See https://aka.ms/new-console-template for more information
+using HRManagementApp.Models;
+
+Console.WriteLine("Hello, World!");
+Employee e = new("Smr", "PA", 1000, "IT");
+
+Console.WriteLine(e);
+
+Employee e2 = new(          

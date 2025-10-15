@@ -13,7 +13,7 @@ namespace HRManagementApp.Interfaces
         public void EditDepartaments(string name, string newName);
 
         void AddEmployee(string fullName, string position, int salary,string departmentName);
-        public void RemoveEmployee(int no, string departmentName);
+        public void RemoveEmployee(string no, string departmentName);
 
         public void Search(string searchText);
 

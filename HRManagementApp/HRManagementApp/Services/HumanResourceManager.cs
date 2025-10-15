@@ -12,7 +12,7 @@ namespace HRManagementApp.Services
     {
         public List<Department> Departments { get; set; } = [];
 
-        public List<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; } = [];
 
         public void AddDepartment(string name,int workerLimit, int salaryLimit)
         {
@@ -39,10 +39,11 @@ namespace HRManagementApp.Services
 
         public void AddEmployee(string fullName, string position, int salary,string departmentName)
         {
+            
             Employee employee = new(fullName,position,salary,departmentName);
             Employees.Add(employee);
         }
-        public void RemoveEmployee(int no,string departmentName)
+        public void RemoveEmployee(string no,string departmentName)
         {
             var employee = Employees.Find(e => e.No == no);
             Employees.Remove(employee);
