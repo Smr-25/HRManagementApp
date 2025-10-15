@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "IHdU9M9NQ7M=",
+  "success": true,
+  "projectFilePath": "/Users/asmrofficialfinder/Documents/CodeAcademyMiniApp/HRManagementApp/HRManagementApp/HRManagementApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/asmrofficialfinder/.nuget/packages/microsoft.netcore.app.ref/8.0.19/microsoft.netcore.app.ref.8.0.19.nupkg.sha512",
+    "/Users/asmrofficialfinder/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.19/microsoft.aspnetcore.app.ref.8.0.19.nupkg.sha512",
+    "/Users/asmrofficialfinder/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.19/microsoft.netcore.app.host.osx-arm64.8.0.19.nupkg.sha512"
+  ],
+  "logs": []
+}
