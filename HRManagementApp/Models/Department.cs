@@ -10,8 +10,10 @@ namespace HRManagementApp.Models
             WorkerLimit = workerLimit;
             SalaryLimit = salaryLimit;
         }
-        
-        public Department() { }
+        public Department()
+        {
+            
+        }
 
         private string _name;
         public string  Name

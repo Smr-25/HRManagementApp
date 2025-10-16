@@ -4,13 +4,13 @@ namespace HRManagementApp.Models
 {
     public class Employee
     {
+        
         private static int _no = 1000;
-
-     
+        
         public Employee(string fullName, string position, int salary, string departmentName)
         {
            
-            No = departmentName.ToUpper().Substring(0, 2) + $"{_no}";
+            No = departmentName.ToUpper().Substring(0, 2) + $"{_no++}";
             FullName = fullName;
             Position = position;
             Salary = salary;

@@ -7,14 +7,14 @@ namespace HRManagementApp.Services
 {
     public class HumanResourceManager : IHumanResourceManager
     {
-        FileGuider fileGuider = new FileGuider();
+        //FileGuider fileGuider = new FileGuider();
 
         public List<Department> Departments { get; set; } = new();
         // public List<Employee> Employees { get; set; } = new();
 
         public HumanResourceManager() { 
       
-           Departments = fileGuider.ReadJsonFile();
+           Departments = FileGuider.ReadJsonFile();
     
         }   
         public void AddDepartment(string name, int workerLimit, int salaryLimit)
@@ -25,7 +25,7 @@ namespace HRManagementApp.Services
                 throw new Exception("Department already exists");
             }
             Departments.Add(new(name, workerLimit, salaryLimit));
-            fileGuider.WriteJsonFile(Departments);
+            FileGuider.WriteJsonFile(Departments);
             Console.WriteLine("Added");
         }
 
@@ -40,7 +40,7 @@ namespace HRManagementApp.Services
 
                 var depatment = Departments.Find(d => d.Name == name);
                 depatment.Name = newName;
-                fileGuider.WriteJsonFile(Departments);
+                FileGuider.WriteJsonFile(Departments);
             }
             else
             {
@@ -76,7 +76,7 @@ namespace HRManagementApp.Services
                     throw new Exception("Salary limit exceeded");
                 
                 department.Employees.Add(new Employee(fullName, position, salary, departmentName));
-                fileGuider.WriteJsonFile(Departments);
+                FileGuider.WriteJsonFile(Departments);
             }
             else
             {
@@ -100,7 +100,7 @@ namespace HRManagementApp.Services
                     throw new Exception("Employee not found");
                 }
 
-                fileGuider.WriteJsonFile(Departments);
+                FileGuider.WriteJsonFile(Departments);
             }
             else
             {

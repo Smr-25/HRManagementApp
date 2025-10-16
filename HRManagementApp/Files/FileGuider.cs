@@ -3,10 +3,9 @@ using Newtonsoft.Json;
 
 namespace HRManagementApp.Files
 {
-    internal class FileGuider
+    public static class FileGuider
     {
-        public string path = "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Datas\\Departments\\Departments.json";
-  
+        public static string path = "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Datas\\Departments\\Departments.json";
         //public void CreateDirectory()
         //{
         //    if (!Directory.Exists(path))
@@ -24,7 +23,7 @@ namespace HRManagementApp.Files
 
         //}
         
-        public List<Department> ReadJsonFile()
+        public static List<Department> ReadJsonFile()
         {
             using FileStream fileStream = new FileStream(path,FileMode.Open);
             using StreamReader streamReader = new StreamReader(fileStream);
@@ -33,12 +32,12 @@ namespace HRManagementApp.Files
             List<Department> departments = JsonConvert.DeserializeObject<List<Department>>(datas);
             if(departments == null)
             {
-                departments = [];
+                departments = new();
             }
             return departments;
         }
 
-        public void WriteJsonFile(List<Department> objects)
+        public static void WriteJsonFile(List<Department> objects)
         {
             using FileStream fileStream = new FileStream(path,FileMode.Create);
             using StreamWriter streamWriter = new StreamWriter(fileStream);
