@@ -1,4 +1,5 @@
-﻿namespace HRManagementApp.Models
+﻿using Newtonsoft.Json;
+namespace HRManagementApp.Models
 {
     public class Department
     {
@@ -9,6 +10,8 @@
             WorkerLimit = workerLimit;
             SalaryLimit = salaryLimit;
         }
+        
+        public Department() { }
 
         private string _name;
         public string  Name
@@ -68,6 +71,8 @@
         }
         public double CalcSalaryAverage()
         {
+            if(Employees == null)
+                 return 0;
             return Employees.Average(e=>e.Salary);
         }
 
@@ -75,5 +80,6 @@
         {
             return $"{Name} {WorkerLimit} {SalaryLimit} ";
         }
+
     }
 }
