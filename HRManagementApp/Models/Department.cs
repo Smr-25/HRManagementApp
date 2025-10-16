@@ -2,7 +2,7 @@
 {
     public class Department
     {
-        private List<Employee> Employees { get; set; } = [];
+        public List<Employee> Employees { get; set; } = new();
         public Department(string name, int workerLimit, int salaryLimit)
         {
             Name = name;
@@ -69,6 +69,11 @@
         public double CalcSalaryAverage()
         {
             return Employees.Average(e=>e.Salary);
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} {WorkerLimit} {SalaryLimit} ";
         }
     }
 }
