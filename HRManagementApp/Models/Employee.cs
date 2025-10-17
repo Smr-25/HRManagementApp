@@ -1,4 +1,5 @@
 ﻿using HRManagementApp.Files;
+using HRManagementApp.Exceptions;
 
 namespace HRManagementApp.Models
 {
@@ -33,7 +34,7 @@ namespace HRManagementApp.Models
             {
                 if (value.Length < 2)
                 {
-                    throw new Exception("Position Must be greater then 2 letter");
+                    throw new InvalidEmployeePositionException("Position length must be at least 2 characters.");
                 }
                 pos = value;
             }
@@ -49,7 +50,7 @@ namespace HRManagementApp.Models
             {
                 if (value < 250)
                 {
-                    throw new Exception("Salary must be greater than 250");
+                    throw new InvalidSalaryException("Salary must be at least 250.");
                 }
 
                 _salary = value;

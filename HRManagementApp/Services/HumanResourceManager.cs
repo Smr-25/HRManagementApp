@@ -1,31 +1,26 @@
-﻿
-using HRManagementApp.Files;
+﻿using HRManagementApp.Files;
 using HRManagementApp.Interfaces;
 using HRManagementApp.Models;
+using HRManagementApp.Exceptions;
 
 namespace HRManagementApp.Services
 {
     public class HumanResourceManager : IHumanResourceManager
-    {
-
+    { 
         public List<Department> Departments { get; set; } = new();
-    
+
         public HumanResourceManager() { 
-      
            Departments = FileGuider.ReadJsonFile();
-    
         }   
+        
         public void AddDepartment(string name, int workerLimit, int salaryLimit)
         {
-            //fileGuider.CreateFile(ref fileGuider.path);
             if (Departments.Any(d => d.Name.ToLower() == name.ToLower()))
             {
-                throw new Exception("Department already exists");
+                throw new DepartmentAlreadyExistsException("Department " + name + " already exists.");
             }
-            
             Departments.Add(new(name, workerLimit, salaryLimit));
             FileGuider.WriteJsonFile(Departments);
-            Console.WriteLine("Added");
         }
 
         public void EditDepartaments(string name, string newName)
@@ -34,7 +29,7 @@ namespace HRManagementApp.Services
             {
                 if (Departments.Any(d => d.Name == newName))
                 {
-                    throw new Exception("Department already exists");
+                    throw new DepartmentAlreadyExistsException("Department " + newName + " already exists.");
                 }
 
                 var depatment = Departments.Find(d => d.Name == name);
@@ -43,9 +38,9 @@ namespace HRManagementApp.Services
             }
             else
             {
-                throw new Exception("Department does not exist");
+                throw new DepartmentNotFoundException("Department " + name + " not found.");
             }
-            Console.WriteLine("Updated");
+            
         }
 
         public void GetDepartments()
@@ -64,28 +59,27 @@ namespace HRManagementApp.Services
                 
                 if(department.Employees.Any(e=>e.FullName.ToLower() == fullName.ToLower()))
                 {
-                    throw new Exception("Employee already exits");
+                    throw new EmployeeAlreadyExistsException("Employee " + fullName + " already exists in department " + departmentName);
                 }
+                
                 if (department.Employees.Count >= department.WorkerLimit)
-                    throw new Exception("Employee limit exceeded");
-
+                    throw new EmployeeLimitExceededException("Worker limit exceeded for department " + departmentName);
 
                 int totalSalary = department.Employees.Sum(e => e.Salary);
                 if (totalSalary >= department.SalaryLimit)
-                    throw new Exception("Salary limit exceeded");
+                    throw new SalaryLimitExceededException("Salary limit exceeded for department " + departmentName);
                 
                 department.Employees.Add(new Employee(fullName, position, salary, departmentName));
                 FileGuider.WriteJsonFile(Departments);
             }
             else
             {
-                throw new Exception("Department not found");
+                throw new DepartmentNotFoundException("Department " + departmentName + " not found.");
             }
         }
 
         public void RemoveEmployee(string no, string departmentName)
         {
-
             if (Departments.Any(d => d.Name == departmentName))
             {
                 var department = Departments.Find(d => d.Name == departmentName);
@@ -96,14 +90,14 @@ namespace HRManagementApp.Services
                 }
                 else
                 {
-                    throw new Exception("Employee not found");
+                    throw new EmployeeNotFoundException("Employee with no " + no + " not found in department " + departmentName);
                 }
 
                 FileGuider.WriteJsonFile(Departments);
             }
             else
             {
-                throw new Exception("Department not found");
+                throw new DepartmentNotFoundException("Department " + departmentName + " not found.");
             }
         }
 
@@ -115,10 +109,11 @@ namespace HRManagementApp.Services
                 var employee = employees.FirstOrDefault(e => e.No == no);
                 employee.Salary = newSalary;
                 employee.Position = newPosition;
+                FileGuider.WriteJsonFile(Departments);
             }
             else
             {
-                throw new Exception("Employee not found");
+                throw new EmployeeNotFoundException("Employee with no " + no + " not found.");
             }
         }
 
@@ -139,5 +134,4 @@ namespace HRManagementApp.Services
             }
         }
     }
-}   
-    
+}

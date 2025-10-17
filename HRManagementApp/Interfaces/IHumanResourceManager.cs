@@ -4,18 +4,20 @@ namespace HRManagementApp.Interfaces
 {
     internal interface IHumanResourceManager
     {
-        public List<Department> Departments { get; set; }
+        List<Department> Departments { get; set; }
 
-        public void AddDepartment(string name,int workerLimit, int salaryLimit);
+        void AddDepartment(string name,int workerLimit, int salaryLimit);
 
-        public void GetDepartments();
+        void GetDepartments();
 
-        public void EditDepartaments(string name, string newName);
+        void EditDepartaments(string name, string newName);
 
         void AddEmployee(string fullName, string position, int salary,string departmentName);
-        public void RemoveEmployee(string no, string departmentName);
+        void RemoveEmployee(string no, string departmentName);
 
-        public void Search(string searchText);
+        void EditEmployee(string no, int newSalary, string newPosition);
+
+        void Search(string searchText);
 
         
     }

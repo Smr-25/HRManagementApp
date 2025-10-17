@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using HRManagementApp.Exceptions;
+
 namespace HRManagementApp.Models
 {
     public class Department
@@ -24,7 +26,7 @@ namespace HRManagementApp.Models
             {
                 if(value.Length < 2)
                 {
-                    throw new Exception("Department name must be greater than 2 letter ");
+                    throw new InvalidDepartmentNameException("Department name must be at least 2 characters long");
                 }
 
                 _name = value;  
@@ -43,7 +45,7 @@ namespace HRManagementApp.Models
             {
                 if (value < 1)
                 {
-                    throw new Exception("Department worker limit must be greater than 1");
+                    throw new ArgumentException("Department worker limit must be greater than 1");
                 }
 
                 _workerLimit = value;
@@ -63,7 +65,7 @@ namespace HRManagementApp.Models
             {
                 if(value < 250)
                 {
-                    throw new Exception("Department salary limit must be greater than 250");
+                    throw new ArgumentException("Department salary limit must be greater than 250");
                 }
 
                 _salaryLimit = value;
