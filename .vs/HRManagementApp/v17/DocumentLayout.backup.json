@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\datas\\departments\\departments.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\services\\humanresourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\services\\humanresourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,20 +19,12 @@
       "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\interfaces\\ihumanresourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\interfaces\\ihumanresourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\files\\fileguider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\files\\fileguider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\services\\humanresourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\services\\humanresourcemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|c:\\users\\samiraa\\desktop\\miniapp\\hrmanagementapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0018563A-D8EB-4FE2-BED8-16474F89972A}|HRManagementApp\\HRManagementApp.csproj|solutionrelative:hrmanagementapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,8 +46,8 @@
               "Title": "Departments.json",
               "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Datas\\Departments\\Departments.json",
               "RelativeDocumentMoniker": "HRManagementApp\\Datas\\Departments\\Departments.json",
-              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Datas\\Departments\\Departments.json*",
-              "RelativeToolTip": "HRManagementApp\\Datas\\Departments\\Departments.json*",
+              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Datas\\Departments\\Departments.json",
+              "RelativeToolTip": "HRManagementApp\\Datas\\Departments\\Departments.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-10-16T11:13:30.939Z",
@@ -59,26 +55,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FileGuider.cs",
               "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Files\\FileGuider.cs",
               "RelativeDocumentMoniker": "HRManagementApp\\Files\\FileGuider.cs",
               "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Files\\FileGuider.cs",
               "RelativeToolTip": "HRManagementApp\\Files\\FileGuider.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwC0AAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-16T10:25:27.581Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "HumanResourceManager.cs",
               "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Services\\HumanResourceManager.cs",
               "RelativeDocumentMoniker": "HRManagementApp\\Services\\HumanResourceManager.cs",
-              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Services\\HumanResourceManager.cs",
-              "RelativeToolTip": "HRManagementApp\\Services\\HumanResourceManager.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAADwv00AAABjAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Services\\HumanResourceManager.cs*",
+              "RelativeToolTip": "HRManagementApp\\Services\\HumanResourceManager.cs*",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwAsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T12:06:13.682Z",
               "EditorCaption": ""
@@ -86,51 +82,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IHumanResourceManager.cs",
-              "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Interfaces\\IHumanResourceManager.cs",
-              "RelativeDocumentMoniker": "HRManagementApp\\Interfaces\\IHumanResourceManager.cs",
-              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Interfaces\\IHumanResourceManager.cs",
-              "RelativeToolTip": "HRManagementApp\\Interfaces\\IHumanResourceManager.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAwwA8AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T11:38:45.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Department.cs",
               "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Models\\Department.cs",
               "RelativeDocumentMoniker": "HRManagementApp\\Models\\Department.cs",
               "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Models\\Department.cs",
               "RelativeToolTip": "HRManagementApp\\Models\\Department.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAA7wAwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T11:32:30.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Employee.cs",
               "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Models\\Employee.cs",
               "RelativeDocumentMoniker": "HRManagementApp\\Models\\Employee.cs",
-              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Models\\Employee.cs*",
-              "RelativeToolTip": "HRManagementApp\\Models\\Employee.cs*",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBQAAABCAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Models\\Employee.cs",
+              "RelativeToolTip": "HRManagementApp\\Models\\Employee.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAIwAcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T11:28:04.562Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Program.cs",
               "RelativeDocumentMoniker": "HRManagementApp\\Program.cs",
               "ToolTip": "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Program.cs",
               "RelativeToolTip": "HRManagementApp\\Program.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAMwB0AAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T11:27:19.985Z",
               "EditorCaption": ""

@@ -3,6 +3,7 @@ namespace HRManagementApp.Models
 {
     public class Department
     {
+        public static int id = 1000;
         public List<Employee> Employees { get; set; } = new();
         public Department(string name, int workerLimit, int salaryLimit)
         {
@@ -10,10 +11,7 @@ namespace HRManagementApp.Models
             WorkerLimit = workerLimit;
             SalaryLimit = salaryLimit;
         }
-        public Department()
-        {
-            
-        }
+        
 
         private string _name;
         public string  Name

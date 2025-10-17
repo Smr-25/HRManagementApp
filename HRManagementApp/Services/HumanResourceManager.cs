@@ -7,11 +7,9 @@ namespace HRManagementApp.Services
 {
     public class HumanResourceManager : IHumanResourceManager
     {
-        //FileGuider fileGuider = new FileGuider();
 
         public List<Department> Departments { get; set; } = new();
-        // public List<Employee> Employees { get; set; } = new();
-
+    
         public HumanResourceManager() { 
       
            Departments = FileGuider.ReadJsonFile();
@@ -24,6 +22,7 @@ namespace HRManagementApp.Services
             {
                 throw new Exception("Department already exists");
             }
+            
             Departments.Add(new(name, workerLimit, salaryLimit));
             FileGuider.WriteJsonFile(Departments);
             Console.WriteLine("Added");
