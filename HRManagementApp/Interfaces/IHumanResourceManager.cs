@@ -10,7 +10,7 @@ namespace HRManagementApp.Interfaces
 
         void GetDepartments();
 
-        void EditDepartaments(string name, string newName);
+        void EditDepartments(string name, string newName);
 
         void AddEmployee(string fullName, string position, int salary,string departmentName);
         void RemoveEmployee(string no, string departmentName);
@@ -19,6 +19,10 @@ namespace HRManagementApp.Interfaces
 
         void Search(string searchText);
 
-        
+        void GetEmployees();
+
+        void GetEmployeesByDepartment(string departmentName);
+
+
     }
 }

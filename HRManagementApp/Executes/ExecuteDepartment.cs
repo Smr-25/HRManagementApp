@@ -1,35 +1,43 @@
+using HRManagementApp.Interfaces;
 using HRManagementApp.Services;
 
 namespace HRManagementApp.Executes;
 
-public class ExecuteDepartment
+public class ExecuteDepartment : IExecuteDepartment
 {
-    private static HumanResourceManager _hrManager = new HumanResourceManager();
+    private static IHumanResourceManager _hrManager = new HumanResourceManager();
     
     public void AddDepartment()
     {
         Console.WriteLine("\n--- ADD NEW DEPARTMENT ---");
+        Name:
         Console.Write("Department Name: ");
-        string name = Console.ReadLine();
+         string name = Console.ReadLine();
             
         if (string.IsNullOrWhiteSpace(name))
         {
             Console.WriteLine("Invalid department name!");
-            return;
+            goto Name;
         }
             
+        WorkerLimit: 
         Console.Write("Employee Limit: ");
-        if (!int.TryParse(Console.ReadLine(), out int workerLimit))
+        
+        string workerLimitStr = Console.ReadLine();
+        if (!int.TryParse(workerLimitStr, out int workerLimit))
         {
             Console.WriteLine("Invalid employee limit!");
-            return;
+            goto WorkerLimit;
         }
             
+        SalaryLimit : 
         Console.Write("Salary Limit: ");
-        if (!int.TryParse(Console.ReadLine(), out int salaryLimit))
+        
+       string salaryLimitStr = Console.ReadLine();
+        if (!int.TryParse(salaryLimitStr, out int salaryLimit))
         {
             Console.WriteLine("Invalid salary limit!");
-            return;
+            goto SalaryLimit;
         }
 
         _hrManager.AddDepartment(name, workerLimit, salaryLimit);
@@ -39,19 +47,29 @@ public class ExecuteDepartment
     public void EditDepartment()
     {
         Console.WriteLine("\n--- EDIT DEPARTMENT ---");
+        
+        DepartmentName: 
         Console.Write("Department name to edit: ");
-        string? oldName = Console.ReadLine();
-            
+        string oldName = Console.ReadLine();
+        
+    
         Console.Write("New department name: ");
-        string? newName = Console.ReadLine();
+        string newName = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(oldName) || string.IsNullOrWhiteSpace(newName))
         {
             Console.WriteLine("Invalid department names!");
-            return;
+            goto DepartmentName;
         }
 
-        _hrManager.EditDepartaments(oldName, newName);
+        _hrManager.EditDepartments(oldName, newName);
         Console.WriteLine("Department updated successfully!");
     }
+    
+    public void ListDepartments()
+    {
+        Console.WriteLine("\n--- DEPARTMENTS LIST ---");
+        _hrManager.GetDepartments();
+    }
+    
 }

@@ -5,6 +5,7 @@ namespace HRManagementApp.Files
 {
     public static class FileGuider
     {
+        
         public static string path = "C:\\Users\\samiraa\\Desktop\\MiniApp\\HRManagementApp\\Datas\\Departments\\Departments.json";
         //public void CreateDirectory()
         //{

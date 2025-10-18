@@ -45,7 +45,7 @@ namespace HRManagementApp.Models
             {
                 if (value < 1)
                 {
-                    throw new ArgumentException("Department worker limit must be greater than 1");
+                    throw new EmployeeLimitExceededException("Department worker limit must be greater than 1");
                 }
 
                 _workerLimit = value;
@@ -65,7 +65,7 @@ namespace HRManagementApp.Models
             {
                 if(value < 250)
                 {
-                    throw new ArgumentException("Department salary limit must be greater than 250");
+                    throw new SalaryLimitExceededException("Department salary limit must be greater than 250");
                 }
 
                 _salaryLimit = value;
@@ -73,14 +73,14 @@ namespace HRManagementApp.Models
         }
         public double CalcSalaryAverage()
         {
-            if(Employees == null)
+            if(Employees == null || Employees.Count == 0)
                  return 0;
             return Employees.Average(e=>e.Salary);
         }
 
         public override string ToString()
         {
-            return $"{Name} {WorkerLimit} {SalaryLimit} ";
+            return $"Name: {Name} Worker Limit: {WorkerLimit} Salary Limit {SalaryLimit} ";
         }
 
     }
