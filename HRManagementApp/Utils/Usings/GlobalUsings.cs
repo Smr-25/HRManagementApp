@@ -7,7 +7,7 @@ global using HRManagementApp.Models;
 global using HRManagementApp.Services;
 global using HRManagementApp.Executes;
 global using HRManagementApp.Interfaces;
-global using HRManagementApp.Files;
+global using HRManagementApp.FileHelper;
 global using HRManagementApp.Exceptions;
 global using HRManagementApp.Enums;
 
