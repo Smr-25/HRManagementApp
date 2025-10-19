@@ -1,5 +1,3 @@
-using System.Linq.Expressions;
-
 namespace HRManagementApp.Executes;
 
 public class ExecuteDepartment : IExecuteDepartment
