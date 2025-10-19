@@ -44,28 +44,10 @@ public class ExecuteEmployee : IExecuteEmployee
             goto Salary;
         }
 
-        try
-        {
-            Console.WriteLine($"DEBUG: Looking for department: '{departmentName}'");
-            Console.WriteLine($"DEBUG: Available departments:");
-            foreach (var dept in _hrManager.Departments)
-            {
-                Console.WriteLine($"  - '{dept.Name}'");
-            }
-            
-            _hrManager.AddEmployee(fullName, position, salary, departmentName);
-            Console.WriteLine("Employee added successfully!");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"ERROR: {ex.Message}");
-            Console.WriteLine($"DEBUG: Department you entered: '{departmentName}'");
-            Console.WriteLine($"DEBUG: Length: {departmentName.Length}");
-            for (int i = 0; i < departmentName.Length; i++)
-            {
-                Console.WriteLine($"  Char {i}: '{departmentName[i]}' (ASCII: {(int)departmentName[i]})");
-            }
-        }
+        _hrManager.AddEmployee(fullName, position, salary, departmentName);
+        Console.WriteLine("Employee added successfully!");
+       
+        
     }
 
     public void EditEmployee()
