@@ -14,7 +14,7 @@
             }
         }
 
-        public void AddDepartment(string name, int workerLimit, int salaryLimit)
+        public void AddDepartment(string name, int workerLimit, decimal salaryLimit)
         {
             name = name.Trim();
             if (Departments.Any(d => d.Name.ToLower() == name.ToLower()))
@@ -64,7 +64,7 @@
             }
         }
 
-        public void AddEmployee(string fullName, string position, int salary, string departmentName)
+        public void AddEmployee(string fullName, string position, decimal salary, string departmentName)
         {
             fullName = fullName.Trim();
             position = position.Trim();
@@ -82,12 +82,13 @@
                 if (department.Employees.Count >= department.WorkerLimit)
                     throw new EmployeeLimitExceededException("Worker limit exceeded for department " + departmentName);
 
-                int totalSalary = department.Employees.Sum(e => e.Salary);
-                if (totalSalary >= department.SalaryLimit)
+                decimal totalSalary = department.Employees.Sum(e => e.Salary);
+                if (totalSalary + salary > department.SalaryLimit)
                     throw new SalaryLimitExceededException("Salary limit exceeded for department " + departmentName);
-
+           
                 int newId = department.GetNextEmployeeId();
-                department.Employees.Add(new Employee(newId,fullName, position, salary, department.Name));
+                department.Employees.Add(new Employee(newId, fullName, position, salary, departmentName));
+                
                 FileGuider.WriteJsonFile(Departments);
             }
             else
@@ -123,7 +124,7 @@
             }
         }
 
-        public void EditEmployee(string no, int newSalary, string newPosition)
+        public void EditEmployee(string no, decimal newSalary, string newPosition)
         {
             no = no.Trim();
             newPosition = newPosition.Trim();
@@ -134,7 +135,7 @@
                 if(Departments.Any(d => d.Name == employee.DepartmentName))
                 {
                     var department = Departments.First(d => d.Name == employee.DepartmentName);
-                    int totalSalaryExcludingCurrent = department.Employees.Where(e => e.No != no).Sum(e => e.Salary);
+                    decimal totalSalaryExcludingCurrent = department.Employees.Where(e => e.No != no).Sum(e => e.Salary);
                     if (totalSalaryExcludingCurrent + newSalary > department.SalaryLimit)
                     {
                         throw new SalaryLimitExceededException("Salary limit exceeded for department " + department.Name);
@@ -221,7 +222,7 @@
             if (Departments.Any(d => d.Name.ToLower() == departmentName.ToLower()))
             {
                 var department = Departments.First(d => d.Name.ToLower() == departmentName.ToLower());
-                double averageSalary = department.CalcSalaryAverage();
+                decimal averageSalary = department.CalcSalaryAverage();
                 Console.WriteLine($"Average salary in department {departmentName}: {averageSalary}");
             }
             else

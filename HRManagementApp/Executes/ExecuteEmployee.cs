@@ -2,7 +2,12 @@ namespace HRManagementApp.Executes;
 
 public class ExecuteEmployee : IExecuteEmployee
 {
-    private readonly IHumanResourceManager _hrManager = new HumanResourceManager();
+   private readonly IHumanResourceManager _hrManager;
+
+    public ExecuteEmployee(IHumanResourceManager hrManager)
+    {
+        _hrManager = hrManager;
+    }
 
     public void AddEmployee()
     {
@@ -38,7 +43,7 @@ public class ExecuteEmployee : IExecuteEmployee
         Salary:
         Console.Write("Salary: ");
         string? salaryStr = Console.ReadLine();
-        if (!int.TryParse(salaryStr, out int salary) || salary < 0)
+        if (!decimal.TryParse(salaryStr, out decimal salary) || salary < 0M)
         {
             Console.WriteLine("Invalid salary!");
             goto Salary;
@@ -75,7 +80,7 @@ public class ExecuteEmployee : IExecuteEmployee
         NewSalary:
         Console.Write("New Salary: ");
         string? newSalaryStr = Console.ReadLine();
-        if (!int.TryParse(newSalaryStr, out int newSalary) || newSalary < 0)
+        if (!decimal.TryParse(newSalaryStr, out decimal newSalary) || newSalary < 0M)
         {
             Console.WriteLine("Invalid salary!");
             goto NewSalary;

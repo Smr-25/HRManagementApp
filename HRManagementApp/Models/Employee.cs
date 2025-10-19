@@ -3,7 +3,7 @@
     public class Employee
     {
         
-        public Employee(int id,string fullName, string position, int salary, string departmentName)
+        public Employee(int id,string fullName, string position, decimal salary, string departmentName)
         {
            
             No = departmentName.ToUpper().Substring(0, 2) + $"{id}";
@@ -17,12 +17,12 @@
 
         public string FullName { get; set; }
 
-        private string pos;
+        private string _pos = string.Empty;
         public string Position
         {
             get
             {
-                return pos;
+                return _pos;
             }
 
             set
@@ -31,19 +31,19 @@
                 {
                     throw new InvalidEmployeePositionException("Position length must be at least 2 characters.");
                 }
-                pos = value;
+                _pos = value;
             }
         }
 
-        private int _salary;
-        public int Salary {
+        private decimal _salary;
+        public decimal Salary {
             get
             {
                 return _salary;
             }
             set
             {
-                if (value < 250)
+                if (value < 250M)
                 {
                     throw new InvalidSalaryException("Salary must be at least 250.");
                 }

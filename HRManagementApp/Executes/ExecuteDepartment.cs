@@ -2,15 +2,22 @@ namespace HRManagementApp.Executes;
 
 public class ExecuteDepartment : IExecuteDepartment
 {
-    private static IHumanResourceManager _hrManager = new HumanResourceManager();
+    
+    
+    private readonly IHumanResourceManager _hrManager;
+
+    public ExecuteDepartment(IHumanResourceManager hrManager)
+    {
+        _hrManager = hrManager;
+    }
 
     public void AddDepartment()
     {
         Console.WriteLine("\n--- ADD NEW DEPARTMENT ---");
 
         Name:
-        Console.Write("Department Name: ");
-        string name = Console.ReadLine();
+        Console.WriteLine("Department Name: ");
+        string? name = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -19,8 +26,8 @@ public class ExecuteDepartment : IExecuteDepartment
         }
 
         WorkerLimit:
-        Console.Write("Employee Limit: ");
-        string workerLimitStr = Console.ReadLine();
+        Console.WriteLine("Employee Limit: ");
+        string? workerLimitStr = Console.ReadLine();
         if (!int.TryParse(workerLimitStr, out int workerLimit))
         {
             Console.WriteLine("Invalid employee limit!");
@@ -28,9 +35,9 @@ public class ExecuteDepartment : IExecuteDepartment
         }
 
         SalaryLimit:
-        Console.Write("Salary Limit: ");
-        string salaryLimitStr = Console.ReadLine();
-        if (!int.TryParse(salaryLimitStr, out int salaryLimit))
+        Console.WriteLine("Salary Limit: ");
+        string? salaryLimitStr = Console.ReadLine();
+        if (!decimal.TryParse(salaryLimitStr, out decimal salaryLimit))
         {
             Console.WriteLine("Invalid salary limit!");
             goto SalaryLimit;
@@ -47,9 +54,9 @@ public class ExecuteDepartment : IExecuteDepartment
     {
         Console.WriteLine("\n--- EDIT DEPARTMENT ---");
         
-        DepartmentName: 
-        Console.Write("Department name to edit: ");
-        string oldName = Console.ReadLine();
+        DepartmentName:
+        Console.WriteLine("Department Name: ");
+        string? oldName = Console.ReadLine();
         
         if (string.IsNullOrWhiteSpace(oldName))
         {
@@ -58,8 +65,8 @@ public class ExecuteDepartment : IExecuteDepartment
         }
 
         NewName:
-        Console.Write("New department name: ");
-        string newName = Console.ReadLine();
+        Console.WriteLine("New Department Name: ");
+        string? newName = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(newName))
         {

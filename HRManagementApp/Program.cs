@@ -2,10 +2,11 @@
 {
     public class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            IExecuteDepartment executeDepartment = new ExecuteDepartment();
-            IExecuteEmployee executeEmployee = new ExecuteEmployee();
+            IHumanResourceManager hrManager = new HumanResourceManager();
+            IExecuteDepartment executeDepartment = new ExecuteDepartment(hrManager);
+            IExecuteEmployee executeEmployee = new ExecuteEmployee(hrManager);
             
 
             while (true)

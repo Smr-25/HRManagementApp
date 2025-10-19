@@ -6,8 +6,8 @@
         private int _lastEmployeeId = 1000;
         private readonly object _idLock = new();
         
-        public List<Employee>? Employees { get; set; } = new();
-        public Department(string name, int workerLimit, int salaryLimit)
+        public List<Employee> Employees { get; set; } = new();
+        public Department(string name, int workerLimit, decimal salaryLimit)
         {
             Name = name;
             WorkerLimit = workerLimit;
@@ -15,7 +15,7 @@
         }
         
 
-        private string _name;
+        private string _name = string.Empty;
         public string  Name
         {
             get
@@ -53,8 +53,8 @@
 
         }
 
-        private int _salaryLimit;
-        public int SalaryLimit {
+        private decimal _salaryLimit;
+        public decimal SalaryLimit {
 
             get
             {
@@ -63,7 +63,7 @@
 
             set
             {
-                if(value < 250)
+                if(value < 250M)
                 {
                     throw new SalaryLimitExceededException("Department salary limit must be greater than 250");
                 }
@@ -74,10 +74,10 @@
         
        
 
-        public double CalcSalaryAverage()
+        public decimal CalcSalaryAverage()
         {
-            if(Employees == null || Employees.Count == 0)
-                 return 0;
+            if(Employees.Count == 0)
+                 return 0M;
             return Employees.Average(e=>e.Salary);
         }
 
@@ -97,7 +97,7 @@
         
         public void InitializeLastEmployeeId()
         {
-            if (Employees != null && Employees.Count > 0)
+            if (Employees.Count > 0)
             {
                 var maxId = 1000;
                 foreach (var employee in Employees)
@@ -112,7 +112,10 @@
                         }
                     }
                 }
-                _lastEmployeeId = maxId;
+                lock (_idLock)
+                {
+                    _lastEmployeeId = maxId;
+                }
             }
         }
     }
