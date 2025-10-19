@@ -1,8 +1,4 @@
-﻿using System;
-using HRManagementApp.Executes;
-using HRManagementApp.Interfaces;
-
-namespace HRManagementApp
+﻿namespace HRManagementApp
 {
     public class Program
     {
@@ -14,7 +10,6 @@ namespace HRManagementApp
 
             while (true)
             {
-                Console.Clear();
                 Console.WriteLine("--- HR MANAGEMENT MENU ---");
                 Console.WriteLine("1. Add Department");
                 Console.WriteLine("2. Edit Department");
@@ -25,46 +20,55 @@ namespace HRManagementApp
                 Console.WriteLine("7. List Employees by Department");
                 Console.WriteLine("8. Edit Employee");
                 Console.WriteLine("9. Search Employees");
-                Console.WriteLine("10. Exit");
+                Console.WriteLine("10. Calculate Average Salary by Department");
+                Console.WriteLine("11. Exit");
                 
                 Input:
-                Console.Write("Select option (1-10): ");
+                Console.Write("Select option (1-11): ");
                 
-                var input = Console.ReadLine();
+                var inputStr = Console.ReadLine();
+                if (!int.TryParse(inputStr, out var input))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 10.");
+                    goto Input;
+                }
                 Console.WriteLine();
 
                 try
                 {
                     switch (input)
                     {
-                        case "1":
+                        case (int)MenuOptions.AddDepartment:
                             executeDepartment.AddDepartment();
                             break;
-                        case "2":
+                        case (int)MenuOptions.EditDepartment:
                             executeDepartment.EditDepartment();
                             break;
-                        case "3":
+                        case (int)MenuOptions.ListDepartments:
                             executeDepartment.ListDepartments();
                             break;
-                        case "4":
+                        case (int)MenuOptions.AddEmployee:
                             executeEmployee.AddEmployee();
                             break;
-                        case "5":
+                        case (int)MenuOptions.RemoveEmployee:
                            executeEmployee.RemoveEmployee();
                             break;
-                        case "6":
+                        case (int)MenuOptions.ListEmployees:
                             executeEmployee.ListEmployees();
                             break;
-                        case "7":
+                        case (int)MenuOptions.ListEmployeesByDepartment:
                             executeEmployee.ListEmployeesByDepartment();
                             break;
-                        case "8":
+                        case (int)MenuOptions.EditEmployee:
                            executeEmployee.EditEmployee();
                             break;
-                        case "9":
+                        case (int)MenuOptions.SearchEmployees:
                             executeEmployee.Search();
                             break;
-                        case "10":
+                        case (int)MenuOptions.CalculateAverageSalary:
+                            executeEmployee.CalculateAverageSalary();
+                            break;
+                        case (int)MenuOptions.Exit:
                             Console.WriteLine("Exiting application...");
                             return;
                         default:

@@ -1,6 +1,4 @@
-﻿using HRManagementApp.Models;
-
-namespace HRManagementApp.Interfaces
+﻿namespace HRManagementApp.Interfaces
 {
     internal interface IHumanResourceManager
     {
@@ -22,7 +20,9 @@ namespace HRManagementApp.Interfaces
         void GetEmployees();
 
         void GetEmployeesByDepartment(string departmentName);
+        
+        void CalculateAverageSalary(string departmentName);
 
-
+        
     }
 }

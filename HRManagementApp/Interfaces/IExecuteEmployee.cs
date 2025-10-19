@@ -8,4 +8,6 @@ public interface IExecuteEmployee
         void EditEmployee();
         void Search();
         void ListEmployeesByDepartment();
+        
+        void CalculateAverageSalary();
 }

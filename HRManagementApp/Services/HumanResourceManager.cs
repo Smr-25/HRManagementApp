@@ -1,41 +1,52 @@
-﻿using HRManagementApp.Files;
-using HRManagementApp.Interfaces;
-using HRManagementApp.Models;
-using HRManagementApp.Exceptions;
+﻿namespace HRManagementApp.Services;
 
-namespace HRManagementApp.Services
-{
     public class HumanResourceManager : IHumanResourceManager
     {
-        public List<Department> Departments { get; set; } = new();
+        public List<Department> Departments { get; set; }
 
         public HumanResourceManager()
         {
             Departments = FileGuider.ReadJsonFile();
+            
+            foreach (var department in Departments)
+            {
+                department.InitializeLastEmployeeId();
+            }
         }
 
         public void AddDepartment(string name, int workerLimit, int salaryLimit)
         {
+            name = name.Trim();
             if (Departments.Any(d => d.Name.ToLower() == name.ToLower()))
             {
                 throw new DepartmentAlreadyExistsException("Department " + name + " already exists.");
             }
-
-            Departments.Add(new(name, workerLimit, salaryLimit));
+            
+            var newDepartment = new Department(name, workerLimit, salaryLimit);
+            newDepartment.InitializeLastEmployeeId();
+            Departments.Add(newDepartment);
             FileGuider.WriteJsonFile(Departments);
         }
 
         public void EditDepartments(string name, string newName)
         {
-            if (Departments.Any(d => d.Name == name))
+            name = name.Trim();
+            newName = newName.Trim();
+            
+            if (Departments.Any(d => d.Name.ToLower() == name.ToLower()))
             {
-                if (Departments.Any(d => d.Name == newName))
+                if (Departments.Any(d => d.Name.ToLower() == newName.ToLower()))
                 {
                     throw new DepartmentAlreadyExistsException("Department " + newName + " already exists.");
                 }
 
-                var depatment = Departments.Find(d => d.Name == name);
-                depatment.Name = newName;
+                var department = Departments.First(d => d.Name.ToLower() == name.ToLower());
+                department.Name = newName;
+                foreach (var employee in department.Employees)
+                {
+                   employee.No = employee.No.Replace(employee.No.Substring(0, 2), newName.ToUpper().Substring(0, 2));
+                   employee.DepartmentName = newName;
+                }
                 FileGuider.WriteJsonFile(Departments);
             }
             else
@@ -55,15 +66,18 @@ namespace HRManagementApp.Services
 
         public void AddEmployee(string fullName, string position, int salary, string departmentName)
         {
-            if (Departments.Any(d => d.Name == departmentName))
+            fullName = fullName.Trim();
+            position = position.Trim();
+            departmentName = departmentName.Trim();
+            
+            if (Departments.Any(d => d.Name.ToLower() == departmentName.ToLower()))
             {
-                var department = Departments.Find(d => d.Name == departmentName);
+                var department = Departments.First(d => d.Name.ToLower() == departmentName.ToLower());
 
                 if (department.Employees.Any(e => e.FullName.ToLower() == fullName.ToLower()))
-                {
                     throw new EmployeeAlreadyExistsException("Employee " + fullName + " already exists in department " +
                                                              departmentName);
-                }
+
 
                 if (department.Employees.Count >= department.WorkerLimit)
                     throw new EmployeeLimitExceededException("Worker limit exceeded for department " + departmentName);
@@ -72,7 +86,8 @@ namespace HRManagementApp.Services
                 if (totalSalary >= department.SalaryLimit)
                     throw new SalaryLimitExceededException("Salary limit exceeded for department " + departmentName);
 
-                department.Employees.Add(new Employee(fullName, position, salary, departmentName));
+                int newId = department.GetNextEmployeeId();
+                department.Employees.Add(new Employee(newId,fullName, position, salary, department.Name));
                 FileGuider.WriteJsonFile(Departments);
             }
             else
@@ -83,12 +98,15 @@ namespace HRManagementApp.Services
 
         public void RemoveEmployee(string no, string departmentName)
         {
-            if (Departments.Any(d => d.Name == departmentName))
+            no = no.Trim();
+            departmentName = departmentName.Trim();
+            
+            if (Departments.Any(d => d.Name.ToLower() == departmentName.ToLower()))
             {
-                var department = Departments.Find(d => d.Name == departmentName);
+                var department = Departments.First(d => d.Name.ToLower() == departmentName.ToLower());
                 if (department.Employees.Any(e => e.No == no))
                 {
-                    var employee = department.Employees.Find(e => e.No == no);
+                    var employee = department.Employees.First(e => e.No == no);
                     department.Employees.Remove(employee);
                 }
                 else
@@ -107,10 +125,21 @@ namespace HRManagementApp.Services
 
         public void EditEmployee(string no, int newSalary, string newPosition)
         {
-            var employees = Departments.SelectMany(e => e.Employees);
-            if (employees.Any(e => e.No == no))
+            no = no.Trim();
+            newPosition = newPosition.Trim();
+            
+            var employee = Departments.SelectMany(d => d.Employees).FirstOrDefault(e => e.No == no);
+            if (employee != null)
             {
-                var employee = employees.FirstOrDefault(e => e.No == no);
+                if(Departments.Any(d => d.Name == employee.DepartmentName))
+                {
+                    var department = Departments.First(d => d.Name == employee.DepartmentName);
+                    int totalSalaryExcludingCurrent = department.Employees.Where(e => e.No != no).Sum(e => e.Salary);
+                    if (totalSalaryExcludingCurrent + newSalary > department.SalaryLimit)
+                    {
+                        throw new SalaryLimitExceededException("Salary limit exceeded for department " + department.Name);
+                    }
+                }
                 employee.Salary = newSalary;
                 employee.Position = newPosition;
                 FileGuider.WriteJsonFile(Departments);
@@ -123,6 +152,8 @@ namespace HRManagementApp.Services
 
         public void Search(string searchText)
         {
+            searchText = searchText.Trim();
+            
             foreach (var department in Departments)
             {
                 foreach (var employee in department.Employees)
@@ -140,12 +171,21 @@ namespace HRManagementApp.Services
 
         public void GetEmployeesByDepartment(string departmentName)
         {
-            if (Departments.Any(d => d.Name == departmentName))
+            departmentName = departmentName.Trim();
+            
+            if (Departments.Any(d => d.Name.ToLower() == departmentName.ToLower()))
             {
-                var department = Departments.Find(d => d.Name == departmentName);
-                foreach (var employee in department.Employees)
+                var department = Departments.FirstOrDefault(d => d.Name.ToLower() == departmentName.ToLower());
+                if (department != null)
                 {
-                    Console.WriteLine(employee);
+                    foreach (var employee in department.Employees)
+                    {
+                        Console.WriteLine(employee);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No employees in this department.");
                 }
             }
             else
@@ -173,5 +213,22 @@ namespace HRManagementApp.Services
                 }
             }
         }
+
+        public void CalculateAverageSalary(string departmentName)
+        {
+            departmentName = departmentName.Trim();
+            
+            if (Departments.Any(d => d.Name.ToLower() == departmentName.ToLower()))
+            {
+                var department = Departments.First(d => d.Name.ToLower() == departmentName.ToLower());
+                double averageSalary = department.CalcSalaryAverage();
+                Console.WriteLine($"Average salary in department {departmentName}: {averageSalary}");
+            }
+            else
+            {
+                throw new DepartmentNotFoundException("Department " + departmentName + " not found.");
+            }
+        }
+
+       
     }
-}

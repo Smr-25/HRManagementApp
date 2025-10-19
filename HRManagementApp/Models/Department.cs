@@ -1,12 +1,12 @@
-﻿using Newtonsoft.Json;
-using HRManagementApp.Exceptions;
+﻿namespace HRManagementApp.Models;
 
-namespace HRManagementApp.Models
-{
     public class Department
     {
-        public static int id = 1000;
-        public List<Employee> Employees { get; set; } = new();
+
+        private int _lastEmployeeId = 1000;
+        private readonly object _idLock = new();
+        
+        public List<Employee>? Employees { get; set; } = new();
         public Department(string name, int workerLimit, int salaryLimit)
         {
             Name = name;
@@ -71,6 +71,9 @@ namespace HRManagementApp.Models
                 _salaryLimit = value;
             }
         }
+        
+       
+
         public double CalcSalaryAverage()
         {
             if(Employees == null || Employees.Count == 0)
@@ -83,5 +86,33 @@ namespace HRManagementApp.Models
             return $"Name: {Name} Worker Limit: {WorkerLimit} Salary Limit {SalaryLimit} ";
         }
 
+        public int GetNextEmployeeId()
+        {
+            lock (_idLock)
+            {
+                _lastEmployeeId++;
+                return _lastEmployeeId;
+            }
+        }
+        
+        public void InitializeLastEmployeeId()
+        {
+            if (Employees != null && Employees.Count > 0)
+            {
+                var maxId = 1000;
+                foreach (var employee in Employees)
+                {
+                    if (employee.No.Length > 2)
+                    {
+                        var idPart = employee.No.Substring(2);
+                        if (int.TryParse(idPart, out int currentId))
+                        {
+                            if (currentId > maxId)
+                                maxId = currentId;
+                        }
+                    }
+                }
+                _lastEmployeeId = maxId;
+            }
+        }
     }
-}

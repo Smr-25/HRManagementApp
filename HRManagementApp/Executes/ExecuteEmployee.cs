@@ -1,21 +1,16 @@
-using HRManagementApp.Interfaces;
-using HRManagementApp.Services;
 namespace HRManagementApp.Executes;
 
 public class ExecuteEmployee : IExecuteEmployee
 {
-    
-    private static IHumanResourceManager _hrManager = new HumanResourceManager();
+    private readonly IHumanResourceManager _hrManager = new HumanResourceManager();
 
     public void AddEmployee()
     {
-
         Console.WriteLine("\n--- ADD NEW EMPLOYEE ---");
 
         DepartmentName:
         Console.Write("Department Name: ");
-
-        string departmentName = Console.ReadLine();
+        string? departmentName = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(departmentName))
         {
             Console.WriteLine("Invalid department name!");
@@ -24,8 +19,7 @@ public class ExecuteEmployee : IExecuteEmployee
 
         FullName:
         Console.Write("Full Name: ");
-
-        string fullName = Console.ReadLine();
+        string? fullName = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(fullName))
         {
             Console.WriteLine("Invalid employee name!");
@@ -34,8 +28,7 @@ public class ExecuteEmployee : IExecuteEmployee
 
         Position:
         Console.Write("Position: ");
-
-        string position = Console.ReadLine();
+        string? position = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(position))
         {
             Console.WriteLine("Invalid position!");
@@ -44,27 +37,44 @@ public class ExecuteEmployee : IExecuteEmployee
 
         Salary:
         Console.Write("Salary: ");
-
-        string salaryStr = Console.ReadLine();
+        string? salaryStr = Console.ReadLine();
         if (!int.TryParse(salaryStr, out int salary) || salary < 0)
         {
             Console.WriteLine("Invalid salary!");
             goto Salary;
         }
-        
-        _hrManager.AddEmployee(fullName, position, salary, departmentName);
-        Console.WriteLine("Employee added successfully!");
 
+        try
+        {
+            Console.WriteLine($"DEBUG: Looking for department: '{departmentName}'");
+            Console.WriteLine($"DEBUG: Available departments:");
+            foreach (var dept in _hrManager.Departments)
+            {
+                Console.WriteLine($"  - '{dept.Name}'");
+            }
+            
+            _hrManager.AddEmployee(fullName, position, salary, departmentName);
+            Console.WriteLine("Employee added successfully!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"ERROR: {ex.Message}");
+            Console.WriteLine($"DEBUG: Department you entered: '{departmentName}'");
+            Console.WriteLine($"DEBUG: Length: {departmentName.Length}");
+            for (int i = 0; i < departmentName.Length; i++)
+            {
+                Console.WriteLine($"  Char {i}: '{departmentName[i]}' (ASCII: {(int)departmentName[i]})");
+            }
+        }
     }
-    
+
     public void EditEmployee()
     {
         Console.WriteLine("\n--- EDIT EMPLOYEE ---");
 
         EmployeeNo:
         Console.Write("Employee No: ");
-
-        string no = Console.ReadLine();
+        string? no = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(no))
         {
             Console.WriteLine("Invalid employee no!");
@@ -73,8 +83,7 @@ public class ExecuteEmployee : IExecuteEmployee
 
         NewPosition:
         Console.Write("New Position: ");
-
-        string newPosition = Console.ReadLine();
+        string? newPosition = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(newPosition))
         {
             Console.WriteLine("Invalid position!");
@@ -83,16 +92,17 @@ public class ExecuteEmployee : IExecuteEmployee
 
         NewSalary:
         Console.Write("New Salary: ");
-
-        string newSalaryStr = Console.ReadLine();
+        string? newSalaryStr = Console.ReadLine();
         if (!int.TryParse(newSalaryStr, out int newSalary) || newSalary < 0)
         {
             Console.WriteLine("Invalid salary!");
             goto NewSalary;
         }
-        
+
+      
         _hrManager.EditEmployee(no, newSalary, newPosition);
         Console.WriteLine("Employee edited successfully!");
+       
     }
 
     public void RemoveEmployee()
@@ -101,8 +111,7 @@ public class ExecuteEmployee : IExecuteEmployee
 
         DepartmentName:
         Console.Write("Department Name: ");
-
-        string departmentName = Console.ReadLine();
+        string? departmentName = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(departmentName))
         {
             Console.WriteLine("Invalid department name!");
@@ -111,16 +120,17 @@ public class ExecuteEmployee : IExecuteEmployee
 
         EmployeeNo:
         Console.Write("Employee No: ");
-
-        string no = Console.ReadLine();
+        string? no = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(no))
         {
             Console.WriteLine("Invalid employee no!");
             goto EmployeeNo;
         }
-        
+
         _hrManager.RemoveEmployee(no, departmentName);
         Console.WriteLine("Employee deleted successfully!");
+        
+        
     }
 
     public void ListEmployees()
@@ -133,7 +143,7 @@ public class ExecuteEmployee : IExecuteEmployee
     {
         DepartmentName:
         Console.Write("Department Name: ");
-        string departmentName = Console.ReadLine();
+        string? departmentName = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(departmentName))
         {
             Console.WriteLine("Invalid department name!");
@@ -142,8 +152,22 @@ public class ExecuteEmployee : IExecuteEmployee
 
         Console.WriteLine($"\n--- {departmentName} EMPLOYEE LIST ---");
         _hrManager.GetEmployeesByDepartment(departmentName);
+        
     }
-    
+
+    public void CalculateAverageSalary()
+    {
+      DepartmentName:
+        Console.Write("Department Name: ");
+        string? departmentName = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(departmentName))
+        {
+            Console.WriteLine("Invalid department name!");
+            goto DepartmentName;
+        }
+        _hrManager.CalculateAverageSalary(departmentName);
+    }
+
     public void Search()
     {
         Console.WriteLine("\n--- SEARCH EMPLOYEES ---");
@@ -151,13 +175,15 @@ public class ExecuteEmployee : IExecuteEmployee
         SearchText:
         Console.Write("Search Text: ");
 
-        string searchText = Console.ReadLine();
+        string? searchText = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(searchText))
         {
             Console.WriteLine("Invalid search text!");
             goto SearchText;
         }
-        
+
+       
         _hrManager.Search(searchText);
+       
     }
 }
