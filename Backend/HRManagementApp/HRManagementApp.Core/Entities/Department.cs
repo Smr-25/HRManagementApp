@@ -8,7 +8,7 @@ public class Department
     public string Name { get; set; } = null!;
     public int WorkerLimit { get; set; }
     public double SalaryLimit { get; set; }
-    private List<Employee> Employees { get; set; } = [];
+    public List<Employee> Employees { get; set; } = [];
 
     public double CalcSalaryAverage()
     {
