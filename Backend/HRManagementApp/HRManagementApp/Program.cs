@@ -1,7 +1,12 @@
+using FluentValidation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<HRManagementApp.Core.Interfaces.IHumanResourceManager, HRManagementApp.Business.Services.HumanResourceManager>();
+builder.Services.AddValidatorsFromAssemblyContaining<HRManagementApp.Business.Validators.EmployeeDtoValidator>();
 
 var app = builder.Build();
 
