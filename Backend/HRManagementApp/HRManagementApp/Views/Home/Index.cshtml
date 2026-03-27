@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Ana Səhifə";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4 fw-bold">HR Management Sisteminə Xoş Gəlmisiniz</h1>
+    <p class="lead mt-3">Bu layihə N-Layer arxitekturası və Singleton Data List arxitekturası ilə qurulmuş vahid portfolio tətbiqidir.</p>
+    
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Departamentlər</h5>
+                    <p class="card-text">Yeni departamentlər yaradın, işçi və maaş limitlərini təyin edin.</p>
+                    <a asp-controller="Department" asp-action="Index" class="btn btn-primary">İdarə et</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">İşçilər</h5>
+                    <p class="card-text">İşçiləri fərqli departamentlərə qeydiyyatdan keçirin və məlumatlarını yeniləyin.</p>
+                    <a asp-controller="Employee" asp-action="Index" class="btn btn-success">İdarə et</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
