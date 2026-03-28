@@ -1,0 +1,52 @@
+@model IEnumerable<HRManagementApp.Core.Entities.Department>
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Departments</h2>
+    <a asp-action="Create" class="btn btn-primary">New Department</a>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<table class="table table-bordered table-striped shadow-sm bg-white">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Worker Limit</th>
+            <th>Salary Limit</th>
+            <th>Current Workers</th>
+            <th>Avg Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(!Model.Any()) {
+            <tr><td colspan="6" class="text-center">No departments found.</td></tr>
+        }
+        @foreach (var dept in Model)
+        {
+            <tr>
+                <td class="fw-bold text-primary">@dept.Name</td>
+                <td>@dept.WorkerLimit</td>
+                <td>@dept.SalaryLimit.ToString("C2")</td>
+                <td>
+                    <span class="badge @(dept.Employees.Count == dept.WorkerLimit ? "bg-danger" : "bg-success")">
+                        @dept.Employees.Count / @dept.WorkerLimit
+                    </span>
+                </td>
+                <td>@dept.CalcSalaryAverage().ToString("C2")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-name="@dept.Name" class="btn btn-sm btn-warning">Edit Name</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
