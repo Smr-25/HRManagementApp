@@ -8,13 +8,6 @@
     <a asp-action="Create" class="btn btn-primary">New Department</a>
 </div>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SuccessMessage"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
 
 <table class="table table-bordered table-striped shadow-sm bg-white">
     <thead class="table-dark">

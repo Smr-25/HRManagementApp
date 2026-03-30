@@ -1,27 +1,27 @@
 @{
-    ViewData["Title"] = "Ana Səhifə";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center mt-5">
-    <h1 class="display-4 fw-bold">HR Management Sisteminə Xoş Gəlmisiniz</h1>
-    <p class="lead mt-3">Bu layihə N-Layer arxitekturası və Singleton Data List arxitekturası ilə qurulmuş vahid portfolio tətbiqidir.</p>
+    <h1 class="display-4 fw-bold">Welcome to HR Management System</h1>
+    <p class="lead mt-3">This project is a portfolio application built with N-Layer architecture and Singleton Data List architecture.</p>
     
     <div class="row mt-5 justify-content-center">
         <div class="col-md-5">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Departamentlər</h5>
-                    <p class="card-text">Yeni departamentlər yaradın, işçi və maaş limitlərini təyin edin.</p>
-                    <a asp-controller="Department" asp-action="Index" class="btn btn-primary">İdarə et</a>
+                    <h5 class="card-title">Departments</h5>
+                    <p class="card-text">Create new departments, set up worker capacities and salary limits.</p>
+                    <a asp-controller="Department" asp-action="Index" class="btn btn-primary">Manage Departments</a>
                 </div>
             </div>
         </div>
         <div class="col-md-5">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">İşçilər</h5>
-                    <p class="card-text">İşçiləri fərqli departamentlərə qeydiyyatdan keçirin və məlumatlarını yeniləyin.</p>
-                    <a asp-controller="Employee" asp-action="Index" class="btn btn-success">İdarə et</a>
+                    <h5 class="card-title">Employees</h5>
+                    <p class="card-text">Register employees to different departments and update their information.</p>
+                    <a asp-controller="Employee" asp-action="Index" class="btn btn-success">Manage Employees</a>
                 </div>
             </div>
         </div>
