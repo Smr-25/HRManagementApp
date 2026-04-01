@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using HRManagementApp.Core.Entities;
 using HRManagementApp.Core.Interfaces;
+using HRManagementApp.DataAccess.Context;
 
 namespace HRManagementApp.Business.Services;
 
-public class HumanResourceManager : IHumanResourceManager
+public class HumanResourceManager(AppDbContext context) : IHumanResourceManager
 {
-    public List<Department> Departments { get; } = new List<Department>();
-
-    private static int _employeeCount = 1000;
+    public List<Department> Departments => context.Departments.Include(d => d.Employees).ToList();
 
     public void AddDepartment(string name, int workerLimit, double salaryLimit)
     {
-        if (Departments.Any(d => d.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+        if (context.Departments.Any(d => d.Name.ToLower() == name.ToLower()))
             throw new Exception("Department with this name already exists!");
 
         var department = new Department
@@ -24,7 +24,8 @@ public class HumanResourceManager : IHumanResourceManager
             SalaryLimit = salaryLimit
         };
 
-        Departments.Add(department);
+        context.Departments.Add(department);
+        context.SaveChanges();
     }
 
     public List<Department> GetDepartments()
@@ -34,24 +35,42 @@ public class HumanResourceManager : IHumanResourceManager
 
     public void EditDepartments(string oldName, string newName)
     {
-        var department = Departments.FirstOrDefault(d => d.Name.Equals(oldName, StringComparison.OrdinalIgnoreCase));
+        var department = context.Departments.Include(d => d.Employees)
+            .FirstOrDefault(d => d.Name.ToLower() == oldName.ToLower());
+            
         if (department == null)
             throw new Exception("Department not found!");
             
-        if (Departments.Any(d => d.Name.Equals(newName, StringComparison.OrdinalIgnoreCase)))
+        if (!oldName.Equals(newName, StringComparison.OrdinalIgnoreCase) && 
+            context.Departments.Any(d => d.Name.ToLower() == newName.ToLower()))
             throw new Exception("Department with this new name already exists!");
 
-        department.Name = newName;
-        
-        foreach (var emp in department.Employees)
+        if (!oldName.Equals(newName, StringComparison.OrdinalIgnoreCase))
         {
-            emp.DepartmentName = newName;
+            var newDept = new Department
+            {
+                Name = newName,
+                WorkerLimit = department.WorkerLimit,
+                SalaryLimit = department.SalaryLimit
+            };
+            
+            context.Departments.Add(newDept);
+            
+            foreach (var emp in department.Employees.ToList())
+            {
+                emp.DepartmentName = newName;
+            }
+            
+            context.Departments.Remove(department);
+            context.SaveChanges();
         }
     }
 
     public void AddEmployee(string fullName, string position, double salary, string departmentName)
     {
-        var department = Departments.FirstOrDefault(d => d.Name.Equals(departmentName, StringComparison.OrdinalIgnoreCase));
+        var department = context.Departments.Include(d => d.Employees)
+            .FirstOrDefault(d => d.Name.ToLower() == departmentName.ToLower());
+            
         if (department == null)
             throw new Exception("Specified department not found!");
 
@@ -61,13 +80,13 @@ public class HumanResourceManager : IHumanResourceManager
         if (department.Employees.Sum(e => e.Salary) + salary > department.SalaryLimit)
             throw new Exception("Department salary limit has been exceeded!");
 
-        _employeeCount++;
+        int currentTotalEmployees = context.Employees.Count() + 1000 + 1;
         
         string prefix = department.Name.Length >= 2 
             ? department.Name.Substring(0, 2).ToUpper() 
             : department.Name.ToUpper();
             
-        string employeeNo = $"{prefix}{_employeeCount}";
+        string employeeNo = $"{prefix}{currentTotalEmployees}";
 
         var employee = new Employee
         {
@@ -78,46 +97,42 @@ public class HumanResourceManager : IHumanResourceManager
             DepartmentName = department.Name
         };
 
-        department.Employees.Add(employee);
+        context.Employees.Add(employee);
+        context.SaveChanges();
     }
 
     public void RemoveEmployee(string no, string departmentName)
     {
-        var department = Departments.FirstOrDefault(d => d.Name.Equals(departmentName, StringComparison.OrdinalIgnoreCase));
-        if (department == null)
-            throw new Exception("Department not found!");
-
-        var employee = department.Employees.FirstOrDefault(e => e.No.Equals(no, StringComparison.OrdinalIgnoreCase));
+        var employee = context.Employees.FirstOrDefault(e => 
+            e.No.ToLower() == no.ToLower() && 
+            e.DepartmentName.ToLower() == departmentName.ToLower());
+            
         if (employee == null)
-            throw new Exception("Employee with this number not found!");
+            throw new Exception("Employee not found in the specified department!");
 
-        department.Employees.Remove(employee);
+        context.Employees.Remove(employee);
+        context.SaveChanges();
     }
 
     public void EditEmployee(string no, string position, double salary)
     {
-        bool isFound = false;
-        foreach (var department in Departments)
-        {
-            var employee = department.Employees.FirstOrDefault(e => e.No.Equals(no, StringComparison.OrdinalIgnoreCase));
-            if (employee != null)
-            {
-                if (salary != employee.Salary)
-                {
-                    double newTotalSalary = department.Employees.Sum(e => e.Salary) - employee.Salary + salary;
-                    if (newTotalSalary > department.SalaryLimit)
-                        throw new Exception("Salary increase exceeds the department's salary limit!");
-                }
-                
-                employee.Position = position;
-                employee.Salary = salary;
-                isFound = true;
-                break;
-            }
-        }
-
-        if (!isFound)
+        var employee = context.Employees.FirstOrDefault(e => e.No.ToLower() == no.ToLower());
+        if (employee == null)
             throw new Exception("Employee with the specified number not found!");
+
+        if (salary != employee.Salary)
+        {
+            var department = context.Departments.Include(d => d.Employees)
+                .First(d => d.Name == employee.DepartmentName);
+                
+            double newTotalSalary = department.Employees.Sum(e => e.Salary) - employee.Salary + salary;
+            if (newTotalSalary > department.SalaryLimit)
+                throw new Exception("Salary increase exceeds the department's salary limit!");
+        }
+        
+        employee.Position = position;
+        employee.Salary = salary;
+        context.SaveChanges();
     }
 
     public List<Employee> Search(string query)
@@ -126,13 +141,11 @@ public class HumanResourceManager : IHumanResourceManager
             return new List<Employee>();
 
         query = query.ToLower();
-        var allEmployees = Departments.SelectMany(d => d.Employees).ToList();
-        
-        return allEmployees.Where(e => 
-            e.FullName.ToLower().Contains(query) || 
-            e.No.ToLower().Contains(query) || 
-            e.Position.ToLower().Contains(query) || 
-            e.DepartmentName.ToLower().Contains(query)
-        ).ToList();
+        return context.Employees
+            .Where(e => e.FullName.ToLower().Contains(query) || 
+                        e.No.ToLower().Contains(query) || 
+                        e.Position.ToLower().Contains(query) || 
+                        e.DepartmentName.ToLower().Contains(query))
+            .ToList();
     }
 }
