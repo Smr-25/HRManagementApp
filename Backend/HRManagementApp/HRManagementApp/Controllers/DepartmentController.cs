@@ -6,18 +6,16 @@ using HRManagementApp.Models;
 
 namespace HRManagementApp.Controllers;
 
-public class DepartmentController : Controller
+public class DepartmentController(IHumanResourceManager manager) : Controller
 {
-    private readonly IHumanResourceManager _manager;
-
-    public DepartmentController(IHumanResourceManager manager)
+    public IActionResult Index(string search = null)
     {
-        _manager = manager;
-    }
+        ViewData["SearchQuery"] = search;
 
-    public IActionResult Index()
-    {
-        var departments = _manager.GetDepartments();
+        var departments = string.IsNullOrWhiteSpace(search) 
+            ? manager.GetDepartments() 
+            : manager.SearchDepartments(search);
+            
         return View(departments);
     }
 
@@ -37,7 +35,7 @@ public class DepartmentController : Controller
 
         try
         {
-            _manager.AddDepartment(dto.Name, dto.WorkerLimit, dto.SalaryLimit);
+            manager.AddDepartment(dto.Name, dto.WorkerLimit, dto.SalaryLimit);
             TempData["SuccessMessage"] = "Department created successfully!";
             return RedirectToAction(nameof(Index));
         }
@@ -53,7 +51,7 @@ public class DepartmentController : Controller
     {
         if (string.IsNullOrEmpty(name)) return BadRequest();
 
-        var dept = _manager.GetDepartments().FirstOrDefault(d => d.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
+        var dept = manager.GetDepartments().FirstOrDefault(d => d.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
         if (dept == null)
         {
             return NotFound();
@@ -75,7 +73,7 @@ public class DepartmentController : Controller
 
         try
         {
-            _manager.EditDepartments(model.OldName, model.NewName);
+            manager.EditDepartments(model.OldName, model.NewName);
             TempData["SuccessMessage"] = $"Department name updated to: {model.NewName}";
             return RedirectToAction(nameof(Index));
         }
@@ -84,5 +82,21 @@ public class DepartmentController : Controller
             ModelState.AddModelError(string.Empty, ex.Message);
             return View(model);
         }
+    }
+
+    [HttpPost]
+    public IActionResult Delete(string name)
+    {
+        try
+        {
+            manager.RemoveDepartment(name);
+            TempData["SuccessMessage"] = "Department deleted successfully!";
+        }
+        catch (System.Exception ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+        
+        return RedirectToAction(nameof(Index));
     }
 }

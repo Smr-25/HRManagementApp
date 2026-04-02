@@ -66,6 +66,27 @@ public class HumanResourceManager(AppDbContext context) : IHumanResourceManager
         }
     }
 
+    public void RemoveDepartment(string name)
+    {
+        var department = context.Departments.FirstOrDefault(d => d.Name.ToLower() == name.ToLower());
+        if (department == null)
+            throw new Exception("Department not found!");
+
+        context.Departments.Remove(department);
+        context.SaveChanges();
+    }
+
+    public List<Department> SearchDepartments(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+            return context.Departments.Include(d => d.Employees).ToList();
+
+        query = query.ToLower();
+        return context.Departments.Include(d => d.Employees)
+            .Where(d => d.Name.ToLower().Contains(query))
+            .ToList();
+    }
+
     public void AddEmployee(string fullName, string position, double salary, string departmentName)
     {
         var department = context.Departments.Include(d => d.Employees)
