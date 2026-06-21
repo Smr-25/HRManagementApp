@@ -524,6 +524,9 @@
             "projectReferences": {
               "/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/NexusHR.Domain.csproj": {
                 "projectPath": "/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/NexusHR.Domain.csproj"
+              },
+              "/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/NexusHR.Infrastructure.csproj": {
+                "projectPath": "/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/NexusHR.Infrastructure.csproj"
               }
             }
           }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NexusHR.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+482801c9c3115e31d7a382ef27f41f5be203aa0c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44d767852f41f860a7c4ca46ec2a67c1d6f5dab1")]
 [assembly: System.Reflection.AssemblyProductAttribute("NexusHR.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NexusHR.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

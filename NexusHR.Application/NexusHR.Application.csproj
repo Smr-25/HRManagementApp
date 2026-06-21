@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NexusHR.Domain\NexusHR.Domain.csproj" />
+    <ProjectReference Include="..\NexusHR.Infrastructure\NexusHR.Infrastructure.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

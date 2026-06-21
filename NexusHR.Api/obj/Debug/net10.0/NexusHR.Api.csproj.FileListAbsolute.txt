@@ -6,7 +6,6 @@
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/obj/Debug/net10.0/NexusHR.Api.csproj.CoreCompileInputs.cache
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/obj/Debug/net10.0/NexusHR.Api.MvcApplicationPartsAssemblyInfo.cs
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/obj/Debug/net10.0/NexusHR.Api.MvcApplicationPartsAssemblyInfo.cache
-/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/obj/Debug/net10.0/NexusHR.Api.sourcelink.json
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/bin/Debug/net10.0/appsettings.Development.json
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/bin/Debug/net10.0/appsettings.json
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Api/bin/Debug/net10.0/NexusHR.Api.staticwebassets.endpoints.json

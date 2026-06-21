@@ -187,7 +187,8 @@
       },
       "NexusHR.Application/1.0.0": {
         "dependencies": {
-          "NexusHR.Domain": "1.0.0"
+          "NexusHR.Domain": "1.0.0",
+          "NexusHR.Infrastructure": "1.0.0"
         },
         "runtime": {
           "NexusHR.Application.dll": {

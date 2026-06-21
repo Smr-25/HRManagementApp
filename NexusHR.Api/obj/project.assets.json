@@ -270,7 +270,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "NexusHR.Domain": "1.0.0"
+          "NexusHR.Domain": "1.0.0",
+          "NexusHR.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NexusHR.Application.dll": {}
