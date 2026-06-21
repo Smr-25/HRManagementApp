@@ -5,7 +5,6 @@
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/NexusHR.Domain.AssemblyInfoInputs.cache
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/NexusHR.Domain.AssemblyInfo.cs
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/NexusHR.Domain.csproj.CoreCompileInputs.cache
-/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/NexusHR.Domain.sourcelink.json
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/NexusHR.Domain.dll
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/refint/NexusHR.Domain.dll
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Domain/obj/Debug/net10.0/NexusHR.Domain.pdb

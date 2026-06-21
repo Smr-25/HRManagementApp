@@ -9,7 +9,6 @@
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/NexusHR.Infrastructure.AssemblyInfoInputs.cache
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/NexusHR.Infrastructure.AssemblyInfo.cs
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/NexusHR.Infrastructure.csproj.CoreCompileInputs.cache
-/Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/NexusHR.Infrastructure.sourcelink.json
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/NexusHR..87D8FD47.Up2Date
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/NexusHR.Infrastructure.dll
 /Users/asmrofficialfinder/Documents/Test/HRManagementApp/NexusHR/NexusHR.Infrastructure/obj/Debug/net10.0/refint/NexusHR.Infrastructure.dll

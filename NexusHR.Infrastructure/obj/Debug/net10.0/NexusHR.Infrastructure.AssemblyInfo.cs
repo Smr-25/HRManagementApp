@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NexusHR.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+482801c9c3115e31d7a382ef27f41f5be203aa0c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72dad9edb6301ff379730daff6e61c9bb0f376ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("NexusHR.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NexusHR.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
